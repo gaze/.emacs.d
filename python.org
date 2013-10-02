@@ -1,0 +1,27 @@
+** Elpy
+
+#+BEGIN_SRC emacs-lisp
+    (defun ome-python-setup ()
+      (elpy-enable)
+      (when (executable-find "ipython")
+        (elpy-use-ipython))
+      (define-key python-mode-map (kbd "RET")
+        'newline-and-indent))
+    
+    ;(when (version< emacs-version "24.3")
+    ;  (add-to-list 'el-get-sources
+    ;               '(:name python24)))
+    
+  ;  (add-to-list 'el-get-sources
+   ;              '(:name elpy
+    ;                    :after (progn
+     ;                             (ome-python-setup))))
+  
+    (add-to-list 'el-get-sources '(:name elpy))
+  
+    
+    (add-to-list 'el-get-sources '(:name powerline))
+    
+    
+    
+#+END_SRC
