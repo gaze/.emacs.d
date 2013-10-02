@@ -29,14 +29,15 @@
 ;; enable y/n answers
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(load-theme 'molokai t)
+(z-require-package 'solarized-theme)
+(load-theme 'solarized-light t)
 
 (set-face-attribute 'default nil :font "PragmataPro-9")
 (set-face-attribute 'fixed-pitch nil :font "PragmataPro-9")
-;; (set-face-attribute 'variable-pitch nil :font "Pt Sans-9")
+(set-face-attribute 'variable-pitch nil :font "Pt Sans-9")
+(set-face-attribute 'font-lock-comment-face nil :font "Pt Sans-9")
 
-(z-require-package 'powerline)
-(powerline-default-theme)
-
+;(z-require-package 'powerline)
+;(powerline-default-theme)
 
 (provide 'init-ui)
