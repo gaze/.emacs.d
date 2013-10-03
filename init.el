@@ -22,9 +22,8 @@ re-downloaded in order to locate PACKAGE."
 
 (z-require-package 'magit)
 
-(require 'init-auto-complete)
-(require 'init-python)
-(require 'init-ui)
-(require 'init-evil)
-(require 'init-scala)
-(require 'init-haskell)
+(defun things ()
+  (interactive)
+  (find-file (concat dropbox-dir "things.org")))
+
+(load "~/.machspec.el")
