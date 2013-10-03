@@ -1,8 +1,10 @@
 (z-require-package 'auto-complete)
+
+(require 'auto-complete)
 (global-auto-complete-mode t)
 
 (setq ac-expand-on-auto-complete nil)
-(setq ac-auto-start nil)
+(setq ac-auto-start t)
 (setq ac-dwim nil)
 
 (setq tab-always-indent 'complete)

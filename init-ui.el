@@ -40,4 +40,16 @@
 ;(z-require-package 'powerline)
 ;(powerline-default-theme)
 
+(z-require-package 'fill-column-indicator)
+(define-globalized-minor-mode global-fci-mode fci-mode
+  (lambda () (fci-mode 1)))
+
+(global-fci-mode 1)
+
+(font-lock-add-keywords nil
+    '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))
+
+(z-require-package 'rainbow-delimiters)
+(require 'rainbow-delimiters)
+
 (provide 'init-ui)
