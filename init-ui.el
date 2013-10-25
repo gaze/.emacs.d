@@ -29,8 +29,8 @@
 ;; enable y/n answers
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(z-require-package 'solarized-theme)
-(load-theme 'solarized-light t)
+; (z-require-package 'solarized-theme)
+(load-theme 'molokai t)
 
 (set-face-attribute 'default nil :font "PragmataPro-9")
 (set-face-attribute 'fixed-pitch nil :font "PragmataPro-9")
@@ -49,7 +49,32 @@
 (font-lock-add-keywords nil
     '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))
 
-(z-require-package 'rainbow-delimiters)
-(require 'rainbow-delimiters)
+(z-require-package 'git-gutter-fringe)
+(when (window-system)
+  (require 'git-gutter-fringe))
 
+(global-git-gutter-mode +1)
+(setq-default indicate-buffer-boundaries 'left)
+(setq-default indicate-empty-lines +1)
+
+(z-require-package 'smart-mode-line)
+(require 'smart-mode-line)
+
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+(sml/setup)
+(setq redisplay-dont-pause t
+      scroll-margin 1
+      scroll-step 1
+      scroll-conservatively 10000
+      scroll-preserve-screen-position 1)
+
+(setq mouse-wheel-follow-mouse 't)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+
+(z-require-package 'rainbow-delimiters)
+
+(require 'rainbow-delimiters)
 (provide 'init-ui)
