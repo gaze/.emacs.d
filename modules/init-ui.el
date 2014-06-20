@@ -17,9 +17,9 @@
 (setq inhibit-startup-screen t)
 
 ;; nice scrolling
-(setq scroll-margin 0
-      scroll-conservatively 100000
-      scroll-preserve-screen-position 1)
+;; (setq scroll-margin 0
+;;       scroll-conservatively 100000
+;;       scroll-preserve-screen-position 1)
 
 
 
@@ -73,22 +73,22 @@
 ;; BUFFER
 
 (z-require-package 'rainbow-delimiters)
+(require 'rainbow-delimiters)
 
 (set-face-attribute 'default nil :font "PragmataPro-14")
 (set-face-attribute 'fixed-pitch nil :font "PragmataPro-14")
 (set-face-attribute 'variable-pitch nil :font "Pt Sans-14")
 (set-face-attribute 'font-lock-comment-face nil :font "Pt Sans-14")
 
-(z-require-package 'fill-column-indicator)
-(define-globalized-minor-mode global-fci-mode fci-mode
-  (lambda () (fci-mode 1)))
+;;(z-require-package 'fill-column-indicator)
+;;(define-globalized-minor-mode global-fci-mode fci-mode
+;;  (lambda () (fci-mode 1)))
 
-(global-fci-mode 1)
+;;(global-fci-mode 1)
 
 (font-lock-add-keywords nil
     '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))
 
-(require 'rainbow-delimiters)
 
 ;;;;;;;;;;; BETTER DEFAULTS from technomancy
 

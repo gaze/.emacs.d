@@ -1,7 +1,7 @@
 (require 'evil)
 
-(setq evil-search-module 'evil-search)
-(setq evil-magic 'very-magic)
+;; (setq evil-search-module 'evil-search)
+;; (setq evil-magic 'very-magic)
 
 (setq evil-emacs-state-cursor '("red" box))
 (setq evil-normal-state-cursor '("green" box))
@@ -53,8 +53,8 @@
 
 (defun my-evil-modeline-change (default-color)
   "changes the modeline color when the evil mode changes"
-  (let ((color (cond ((evil-insert-state-p) '("#859900" . "#ffffff"))
-                     ((evil-visual-state-p) '("#859900" . "#ffffff"))
+  (let ((color (cond ((evil-insert-state-p) '("#eee8d5" . "#ffffff"))
+                     ((evil-visual-state-p) '("#eee8d5" . "#ffffff"))
                      ((evil-normal-state-p) default-color)
                      (t '("#073642" . "#ffffff")))))
     (set-face-background 'mode-line (car color))
