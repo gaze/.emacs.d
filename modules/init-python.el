@@ -1,7 +1,8 @@
-(z-require-package 'elpy)
+(z-require-package 'anaconda-mode)
+(require 'anaconda-mode)
 
-(elpy-enable)
-(elpy-use-ipython)
+(add-hook 'python-mode-hook 'anaconda-mode)
+
 
 (defun annotate-pdb ()
   (interactive)

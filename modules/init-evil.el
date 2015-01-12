@@ -1,14 +1,14 @@
 (require 'evil)
 
-;; (setq evil-search-module 'evil-search)
-;; (setq evil-magic 'very-magic)
+(setq evil-search-module 'evil-search)
+(setq evil-magic 'very-magic)
 
-(setq evil-emacs-state-cursor '("red" box))
-(setq evil-normal-state-cursor '("green" box))
-(setq evil-visual-state-cursor '("orange" box))
-(setq evil-insert-state-cursor '("red" bar))
-(setq evil-replace-state-cursor '("red" bar))
-(setq evil-operator-state-cursor '("red" hollow))
+;; (setq evil-emacs-state-cursor '("#dc322f" box))
+;; (setq evil-normal-state-cursor '("#6c71c4" box))
+;; (setq evil-visual-state-cursor '("#6c71c4" box))
+;; (setq evil-insert-state-cursor '("#2aa198" bar))
+;; (setq evil-replace-state-cursor '("#2aa198" bar))
+;; (setq evil-operator-state-cursor '("#2aa198" hollow))
 
 (setq evilnc-hotkey-comment-operator "gc")
 
@@ -49,21 +49,8 @@
 (defadvice evil-jump-backward (after advice-for-evil-jump-backward activate)
   (evil-scroll-line-to-center (line-number-at-pos)))
 
-;; Modeline highlighting of evilness by bling
 
-(defun my-evil-modeline-change (default-color)
-  "changes the modeline color when the evil mode changes"
-  (let ((color (cond ((evil-insert-state-p) '("#eee8d5" . "#ffffff"))
-                     ((evil-visual-state-p) '("#eee8d5" . "#ffffff"))
-                     ((evil-normal-state-p) default-color)
-                     (t '("#073642" . "#ffffff")))))
-    (set-face-background 'mode-line (car color))
-    (set-face-foreground 'mode-line (cdr color))))
-
-(lexical-let ((default-color (cons (face-background 'mode-line)
-                                   (face-foreground 'mode-line))))
-  (add-hook 'post-command-hook (lambda () (my-evil-modeline-change default-color))))
-
+(define-key evil-normal-state-map "gd" 'ido-switch-buffer)
 
  (setq ring-bell-function 'ignore)
 (provide 'init-evil)

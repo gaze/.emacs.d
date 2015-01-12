@@ -7,13 +7,21 @@
 
 (require 'haskell-mode)
 (require 'init-ui)
-(require 'init-evil)
-
+;; (require 'init-evil)
+;; (require 'init-python)
 (require 'yasnippet)
 
-;; (defun things ()
-;;  (interactive)
-;;  (find-file (concat dropbox-dir "things.org")))
+(setq inferior-lisp-program "/usr/local/bin/sbcl")
+
+(global-auto-complete-mode t)
+(add-to-list 'ac-modes 'lisp-mode)
+
+(add-hook 'slime-mode-hook 'set-up-slime-ac)
+(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'slime-repl-mode))
+
+(slime-setup '(slime-fancy slime-asdf))
 
 ;;(z-require-package 'skewer-mode)
 

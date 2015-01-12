@@ -2,8 +2,9 @@
 
 ;; WINDOW
 
-(z-require-package 'solarized-theme)
-(load-theme 'solarized-light t)
+(z-require-package 'moe-theme)
+(require 'moe-theme)
+(load-theme 'moe-dark t)
 
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
