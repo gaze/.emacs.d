@@ -3,25 +3,28 @@
 (add-to-list 'load-path (expand-file-name "modules" user-emacs-directory))
 
 (require 'z-packages)
-(require 'z-osx)
+;; (require 'z-osx)
 
-(require 'haskell-mode)
+;; (require 'haskell-mode)
 (require 'init-ui)
-;; (require 'init-evil)
+(require 'init-evil)
 ;; (require 'init-python)
 (require 'yasnippet)
 
-(setq inferior-lisp-program "/usr/local/bin/sbcl")
+(add-to-list 'load-path (expand-file-name "copied/igor-mode" user-emacs-directory))
+(require 'igor-mode)
 
-(global-auto-complete-mode t)
-(add-to-list 'ac-modes 'lisp-mode)
+;; (setq inferior-lisp-program "/usr/local/bin/sbcl")
 
-(add-hook 'slime-mode-hook 'set-up-slime-ac)
-(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
-(eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'slime-repl-mode))
+;;(global-auto-complete-mode t)
+;;(add-to-list 'ac-modes 'lisp-mode)
 
-(slime-setup '(slime-fancy slime-asdf))
+;;(add-hook 'slime-mode-hook 'set-up-slime-ac)
+;;(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
+;;(eval-after-load "auto-complete"
+;;  '(add-to-list 'ac-modes 'slime-repl-mode))
+
+;;(slime-setup '(slime-fancy slime-asdf))
 
 ;;(z-require-package 'skewer-mode)
 

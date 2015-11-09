@@ -2,9 +2,9 @@
 
 ;; WINDOW
 
-(z-require-package 'moe-theme)
-(require 'moe-theme)
-(load-theme 'moe-dark t)
+(z-require-package 'monokai-theme)
+(require 'monokai-theme)
+(load-theme 'monokai t)
 
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
@@ -76,10 +76,10 @@
 (z-require-package 'rainbow-delimiters)
 (require 'rainbow-delimiters)
 
-(set-face-attribute 'default nil :font "PragmataPro-14")
-(set-face-attribute 'fixed-pitch nil :font "PragmataPro-14")
-(set-face-attribute 'variable-pitch nil :font "Pt Sans-14")
-(set-face-attribute 'font-lock-comment-face nil :font "Pt Sans-14")
+(set-face-attribute 'default nil :font "PragmataPro-12")
+(set-face-attribute 'fixed-pitch nil :font "PragmataPro-12")
+(set-face-attribute 'variable-pitch nil :font "Pt Sans-12")
+(set-face-attribute 'font-lock-comment-face nil :font "Pt Sans-12")
 
 ;;(z-require-package 'fill-column-indicator)
 ;;(define-globalized-minor-mode global-fci-mode fci-mode

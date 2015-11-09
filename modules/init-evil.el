@@ -1,5 +1,14 @@
 (require 'evil)
 
+(z-require-package 'evil)
+(z-require-package 'evil-numbers)
+(z-require-package 'evil-visualstar)
+(z-require-package 'evil-nerd-commenter)
+(z-require-package 'evil-indent-textobject)
+(z-require-package 'evil-matchit)
+(z-require-package 'evil-exchange)
+(z-require-package 'evil-surround)
+
 (setq evil-search-module 'evil-search)
 (setq evil-magic 'very-magic)
 
@@ -11,15 +20,6 @@
 ;; (setq evil-operator-state-cursor '("#2aa198" hollow))
 
 (setq evilnc-hotkey-comment-operator "gc")
-
-(z-require-package 'evil)
-(z-require-package 'evil-numbers)
-(z-require-package 'evil-visualstar)
-(z-require-package 'evil-nerd-commenter)
-(z-require-package 'evil-indent-textobject)
-(z-require-package 'evil-matchit)
-(z-require-package 'evil-exchange)
-(z-require-package 'evil-surround)
 
 (require 'evil)
 (require 'evil-nerd-commenter)
