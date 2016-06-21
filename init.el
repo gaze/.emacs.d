@@ -1,29 +1,31 @@
 (require 'org)
-(add-to-list 'load-path user-emacs-directory)
 
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'load-path (expand-file-name "modules" user-emacs-directory))
 
-(package-initialize)
+(require 'z-packages)
+;; (require 'z-osx)
 
-(defun z-require-package (package &optional min-version no-refresh)
-  "Install given PACKAGE, optionally requiring MIN-VERSION.
-If NO-REFRESH is non-nil, the available package lists will not be
-re-downloaded in order to locate PACKAGE."
-  (if (package-installed-p package min-version)
-      t
-    (if (or (assoc package package-archive-contents) no-refresh)
-        (package-install package)
-      (progn
-        (package-refresh-contents)
-        (z-require-package package min-version t)))))
+;; (require 'haskell-mode)
+(require 'init-ui)
+(require 'init-evil)
+;; (require 'init-python)
+(require 'yasnippet)
 
+(add-to-list 'load-path (expand-file-name "copied/igor-mode" user-emacs-directory))
+;(require 'igor-mode)
 
-(z-require-package 'magit)
+;; (setq inferior-lisp-program "/usr/local/bin/sbcl")
 
-(defun things ()
-  (interactive)
-  (find-file (concat dropbox-dir "things.org")))
+;;(global-auto-complete-mode t)
+;;(add-to-list 'ac-modes 'lisp-mode)
 
-; (load "~/.machspec.el")
+;;(add-hook 'slime-mode-hook 'set-up-slime-ac)
+;;(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
+;;(eval-after-load "auto-complete"
+;;  '(add-to-list 'ac-modes 'slime-repl-mode))
+
+;;(slime-setup '(slime-fancy slime-asdf))
+
+;;(z-require-package 'skewer-mode)
+
+;;(load "~/.machspec.el")
