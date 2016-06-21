@@ -29,13 +29,13 @@
 ;; enable y/n answers
 (fset 'yes-or-no-p 'y-or-n-p)
 
-; (z-require-package 'solarized-theme)
-(load-theme 'molokai t)
+(z-require-package 'solarized-theme)
+(load-theme 'solarized-theme-dark t)
 
-(set-face-attribute 'default nil :font "PragmataPro-9")
-(set-face-attribute 'fixed-pitch nil :font "PragmataPro-9")
-(set-face-attribute 'variable-pitch nil :font "Pt Sans-9")
-(set-face-attribute 'font-lock-comment-face nil :font "Pt Sans-9")
+(set-face-attribute 'default nil :font "PragmataPro-14")
+(set-face-attribute 'fixed-pitch nil :font "PragmataPro-14")
+(set-face-attribute 'variable-pitch nil :font "Pt Sans-14")
+(set-face-attribute 'font-lock-comment-face nil :font "Pt Sans-14")
 
 ;(z-require-package 'powerline)
 ;(powerline-default-theme)

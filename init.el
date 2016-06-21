@@ -26,4 +26,4 @@ re-downloaded in order to locate PACKAGE."
   (interactive)
   (find-file (concat dropbox-dir "things.org")))
 
-(load "~/.machspec.el")
+; (load "~/.machspec.el")

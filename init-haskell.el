@@ -6,7 +6,8 @@
 (autoload 'ghc-init "ghc" nil t)
 (add-hook 'haskell-mode-hook
       (lambda ()
-        (ghc-init)))
+        (ghc-init)
+	(flymake-mode)))
 
 (ac-define-source ghc-mod
   '((depends ghc)
