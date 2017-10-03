@@ -1,9 +1,6 @@
-;; From prelude-ui.el of bbatsov
-
 ;; WINDOW
 
 (z-require-package 'monokai-theme)
-(require 'monokai-theme)
 (load-theme 'monokai t)
 
 (when (fboundp 'tool-bar-mode)
@@ -21,8 +18,6 @@
 ;; (setq scroll-margin 0
 ;;       scroll-conservatively 100000
 ;;       scroll-preserve-screen-position 1)
-
-
 
 ;;; GUTTER / FRINGE
 
@@ -45,11 +40,7 @@
 (column-number-mode t)
 (size-indication-mode t)
 
-;; (z-require-package 'powerline)
-;; (powerline-default-theme)
-
 (z-require-package 'smart-mode-line)
-(require 'smart-mode-line)
 (sml/setup)
 (sml/apply-theme 'respectful)
 
@@ -81,11 +72,11 @@
 (set-face-attribute 'variable-pitch nil :font "Pt Sans-12")
 (set-face-attribute 'font-lock-comment-face nil :font "Pt Sans-12")
 
-;;(z-require-package 'fill-column-indicator)
-;;(define-globalized-minor-mode global-fci-mode fci-mode
-;;  (lambda () (fci-mode 1)))
+(z-require-package 'fill-column-indicator)
+(define-globalized-minor-mode global-fci-mode fci-mode
+  (lambda () (fci-mode 1)))
 
-;;(global-fci-mode 1)
+(global-fci-mode 1)
 
 (font-lock-add-keywords nil
     '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))
@@ -120,7 +111,5 @@
     save-place-file (concat user-emacs-directory "places")
     backup-directory-alist `(("." . ,(concat user-emacs-directory
                                              "backups"))))
-
-;;;;;;;;;;;;;
 
 (provide 'init-ui)

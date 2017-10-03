@@ -1,5 +1,3 @@
-(require 'evil)
-
 (z-require-package 'evil)
 (z-require-package 'evil-numbers)
 (z-require-package 'evil-visualstar)
@@ -52,5 +50,5 @@
 
 (define-key evil-normal-state-map "gd" 'ido-switch-buffer)
 
- (setq ring-bell-function 'ignore)
+(setq ring-bell-function 'ignore)
 (provide 'init-evil)
