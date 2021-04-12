@@ -1,7 +1,9 @@
 ;; WINDOW
 
-(z-require-package 'monokai-theme)
-(load-theme 'monokai t)
+;;(straight-use-package 'monokai-theme)
+(straight-use-package 'moe-theme)
+(require 'moe-theme)
+(moe-light)
 
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
@@ -26,7 +28,7 @@
 (if (fboundp 'fringe-mode)
     (fringe-mode 4))
 
-(z-require-package 'git-gutter-fringe)
+(straight-use-package 'git-gutter-fringe)
 (when (window-system)
   (require 'git-gutter-fringe))
 
@@ -40,7 +42,7 @@
 (column-number-mode t)
 (size-indication-mode t)
 
-(z-require-package 'smart-mode-line)
+(straight-use-package 'smart-mode-line)
 (sml/setup)
 (sml/apply-theme 'respectful)
 
@@ -64,7 +66,7 @@
 
 ;; BUFFER
 
-(z-require-package 'rainbow-delimiters)
+(straight-use-package 'rainbow-delimiters)
 (require 'rainbow-delimiters)
 
 (set-face-attribute 'default nil :font "PragmataPro-12")
@@ -72,7 +74,7 @@
 (set-face-attribute 'variable-pitch nil :font "Pt Sans-12")
 (set-face-attribute 'font-lock-comment-face nil :font "Pt Sans-12")
 
-(z-require-package 'fill-column-indicator)
+(straight-use-package 'fill-column-indicator)
 (define-globalized-minor-mode global-fci-mode fci-mode
   (lambda () (fci-mode 1)))
 
