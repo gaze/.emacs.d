@@ -1,9 +1,7 @@
 ;; WINDOW
 
-;;(straight-use-package 'monokai-theme)
-(straight-use-package 'moe-theme)
-(require 'moe-theme)
-(moe-light)
+(straight-use-package 'nord-theme)
+(load-theme 'nord t)
 
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
@@ -69,10 +67,10 @@
 (straight-use-package 'rainbow-delimiters)
 (require 'rainbow-delimiters)
 
-(set-face-attribute 'default nil :font "PragmataPro-12")
-(set-face-attribute 'fixed-pitch nil :font "PragmataPro-12")
-(set-face-attribute 'variable-pitch nil :font "Pt Sans-12")
-(set-face-attribute 'font-lock-comment-face nil :font "Pt Sans-12")
+(set-face-attribute 'default nil :font "Source Code Pro 12")
+(set-face-attribute 'fixed-pitch nil :font "Source Code Pro 12")
+;;(set-face-attribute 'variable-pitch nil :font "Pt Sans-12")
+;;(set-face-attribute 'font-lock-comment-face nil :font "Pt Sans-12")
 
 (straight-use-package 'fill-column-indicator)
 (define-globalized-minor-mode global-fci-mode fci-mode
