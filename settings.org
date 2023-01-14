@@ -1,11 +1,11 @@
 * UI
 ** Theme/Font
 #+BEGIN_SRC emacs-lisp
-(straight-use-package 'solarized-theme)
-(load-theme 'solarized-light)
+(straight-use-package 'dracula-theme)
+(load-theme 'dracula)
 
-(set-face-attribute 'default nil :font "Source Code Pro 14")
-(set-face-attribute 'fixed-pitch nil :font "Source Code Pro 14")
+(set-face-attribute 'default nil :font "JetBrains Mono 14")
+(set-face-attribute 'fixed-pitch nil :font "JetBrains Mono 14")
 
 (straight-use-package 'rainbow-delimiters)
 (require 'rainbow-delimiters)
@@ -15,8 +15,6 @@
 #+BEGIN_SRC emacs-lisp
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
-
-(menu-bar-mode -1)
 
 ;; the blinking cursor is nothing, but an annoyance
 (blink-cursor-mode -1)
@@ -59,6 +57,23 @@
 (sml/setup)
 (sml/apply-theme 'respectful)
 #+END_SRC
+** Editing Experience
+#+BEGIN_SRC emacs-lisp
+(straight-use-package 'avy)
+
+(global-set-key (kbd "C-:") 'avy-goto-char)
+(global-set-key (kbd "C-'") 'avy-goto-char-2)
+(avy-setup-default)
+(global-set-key (kbd "C-c C-j") 'avy-resume)
+
+(straight-use-package 'paredit)
+(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+(add-hook 'ielm-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
+(add-hook 'scheme-mode-hook           #'enable-paredit-mode)
+#+END_SRC
 * Version Control
 ** Magit
 #+BEGIN_SRC emacs-lisp
@@ -70,7 +85,7 @@
 #+BEGIN_SRC emacs-lisp
 (straight-use-package 'lsp-mode)
 (straight-use-package 'lsp-ui)
-(straight-use-package 'company-lsp)
+(straight-use-package 'company-mode)
 
 (use-package lsp-mode :commands lsp)
 (use-package lsp-ui :commands lsp-ui-mode)
@@ -94,14 +109,21 @@
   :config
   (global-company-mode +1))
 
-(use-package company-lsp :commands company-lsp)
 (setq company-tooltip-align-annotations t)
+
+(add-hook 'c-mode-hook #'lsp)
+(add-hook 'c++-mode-hook #'lsp)
+(add-hook 'rust-mode-hook #'lsp)
 #+END_SRC
-** ido-mode
+
+** Ivy
 #+BEGIN_SRC emacs-lisp
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
+(straight-use-package 'ivy)
+(straight-use-package 'counsel)
+(use-package ivy :config (ivy-mode))
+
+(global-set-key (kbd "M-x") 'counsel-M-x)
+
 #+END_SRC
 ** Projectile
 #+BEGIN_SRC emacs-lisp
@@ -110,14 +132,16 @@
 #+END_SRC
 * LISP
 ** General aesthetics/editing experience
-
 #+BEGIN_SRC emacs-lisp
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-(straight-use-package 'smartparens)
+
 ;; highlight parens
 (require 'paren)
 (show-paren-mode t)
+
+(straight-use-package 'smartparens)
+
 #+END_SRC
 ** Clojure
 
@@ -129,65 +153,44 @@
 ** CL
 #+BEGIN_SRC emacs-lisp
 (straight-use-package 'sly)
+
+(use-package sly)
+
+(sly-setup '(sly-tramp sly-mrepl sly-fancy))
+
 (setq inferior-lisp-program "/usr/local/bin/sbcl")
 #+END_SRC
+** CL Remote
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'sly-filename-translations
+                   (sly-create-filename-translator
+                    :machine-instance "gir-fridge"
+                    :remote-host "192.168.191.131"
+                    :username "gir"))
+#+END_SRC
 * C/C++
-** CCLS
+* Haskell
 #+BEGIN_SRC emacs-lisp
-(straight-use-package 'ccls)
+(straight-use-package 'haskell-mode)
+(straight-use-package 'lsp-haskell)
 
-(use-package ccls
-             :hook ((cmode c++mode objc-mode cuda-mode) .
-                    (lambda () (require 'ccls) (lsp))))
+(use-package haskell-mode)
 
-(setq ccls-sem-highlight-method 'font-lock)
-(setq ccls-executable "/usr/bin/ccls")
-#+END_SRC
-* O'Caml
-** OPAM
-#+BEGIN_SRC emacs-lisp
-(defun opam-path (path)
-  (let ((opam-share-dir "/Users/gaze/.opam/4.13.1/share"))
-    (concat opam-share-dir "/" path)))
+(use-package lsp-haskell
+  :after (haskell-mode lsp-mode)
+  :config
+  ;; Comment/uncomment this line to see interactions between lsp client/server.
+  ;; (setq lsp-log-io t)
+  :custom
+  ;(lsp-haskell-process-args-hie '("-d" "-l" "/tmp/hie.log"))
+  ;(lsp-haskell-server-args ())
+  (lsp-haskell-server-path "haskell-language-server-wrapper"))
 
-(add-to-list 'load-path (opam-path "emacs/site-lisp"))
-#+END_SRC
-** OCP-Indent
-#+BEGIN_SRC emacs-lisp
-(straight-use-package 'ocp-indent)
-#+END_SRC
-** Merlin
-#+BEGIN_SRC emacs-lisp
-(straight-use-package 'merlin)
-(require 'merlin)
-
-(add-to-list 'company-backends 'merlin-company-backend)
-(add-hook 'merlin-mode-hook 'company-mode)
-
-(setq merlin-completion-with-doc t)
-(setq merlin-use-auto-complete-mode 'easy)
-(setq merlin-command "/Users/gaze/.opam/4.13.1/bin/ocamlmerlin")
-(setq merlin-locate-preference 'mli)
-#+END_SRC
-** Tuareg
-#+BEGIN_SRC emacs-lisp
-(straight-use-package 'tuareg)
-(setq tuareg-font-lock-symbols t)
-
-(add-hook 'tuareg-mode-hook
-          (lambda ()
-            (merlin-mode)
-            (local-set-key (kbd "C-c C-c") 'recompile)
-            (auto-fill-mode)
-            (add-hook 'before-save-hook 'ocp-indent-buffer nil t)))
-
-(setq tuareg-interactive-program "opam config exec -- ocaml -nopromptcont")
+(add-hook 'haskell-mode-hook #'lsp)
+(add-hook 'haskell-literate-mode-hook #'lsp)
 
 #+END_SRC
-** utop Mode
+* Elm
 #+BEGIN_SRC emacs-lisp
-(straight-use-package 'utop)
-(setq utop-command "opam config exec -- dune utop . -- -emacs")
-(autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
-(add-hook 'tuareg-mode-hook 'utop-minor-mode)
+(straight-use-package 'elm-mode)
 #+END_SRC
